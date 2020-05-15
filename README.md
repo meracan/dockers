@@ -8,7 +8,7 @@ Docker containers for Marine Energy Resource Assessment Canada.
 ## Installation
 #### Set environment variables
 ```bash
-export AWS_REPO="awsbatch/telemac2d"
+export AWS_REPO="awsbatch/telemac"
 export AWS_REPOTAG="v8p1r0"
 export AWS_REGION="us-east-1"
 ```
@@ -23,6 +23,7 @@ aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --
 ```
 
 #### Push container to repository
+Inside a folder containing Dockerfile
 ```bash
 docker build -t $AWS_REPO . 
 docker tag $AWS_REPO:$AWS_REPOTAG $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$AWS_REPO:$AWS_REPOTAG

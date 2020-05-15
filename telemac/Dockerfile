@@ -45,10 +45,21 @@ ENV METISHOME="/telemac/metis"
 
 RUN compile_telemac.py
 
-# RUN git clone git@github.com:meracan/s3-telemac.git
-# RUN pip3 install --no-cache -e ./s3-telemac
+RUN apk add --no-cache \
+    -X http://dl-cdn.alpinelinux.org/alpine/edge/community \
+    py3-boto3
+RUN pwd
+RUN pwd
+RUN pwd
+RUN pwd
+RUN pwd
+RUN pwd
+RUN mkdir /gitlocal && cd /gitlocal && \
+    git clone https://github.com/meracan/meracan-api.git && \
+    pip3 install --no-cache -e ./meracan-api
 
-# RUN mkdir /data
-# WORKDIR "/data"
-# COPY ./run.py /model/run.py
-# CMD ["python3","run.py"]
+ENV TELEMAC_LOCALFOLDER="/data"
+RUN mkdir /data
+WORKDIR "/data"
+COPY ./download.py /data/download.py
+# CMD ["python3","download.py"]
